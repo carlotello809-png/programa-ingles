@@ -1,0 +1,12 @@
+{
+  "name": "Fluent — Daily English Practice",
+  "short_name": "Fluent",
+  "description": "A personal daily platform for practicing Listening, Grammar, Reading, and Vocabulary.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#08090b",
+  "theme_color": "#08090b",
+  "icons": [
+    { "src": "assets/icon.svg", "sizes": "any", "type": "image/svg+xml" }
+  ]
+}

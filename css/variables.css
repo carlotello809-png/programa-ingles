@@ -1,0 +1,89 @@
+:root {
+  /* Surfaces — deep near-black shell so neon colors pop */
+  --bg: #05050c;
+  --bg-elevated: #0a0a16;
+  --surface: rgba(15, 15, 28, 0.72);
+  --surface-solid: #12121f;
+  --surface-hover: #1a1a30;
+  --surface-2: #1e1e38;
+  --border: #2c2c4a;
+  --border-soft: #1e1e34;
+
+  /* Text — near-white so it reads clean against neon glow */
+  --text-primary: #f1f1ff;
+  --text-secondary: #9d9dc9;
+  --text-muted: #63637f;
+
+  /* Accent — electric purple/magenta, the primary neon */
+  --accent: #b026ff;
+  --accent-soft: rgba(176, 38, 255, 0.16);
+  --accent-glow: rgba(176, 38, 255, 0.65);
+  --accent-strong: #d264ff;
+  --accent-deep: #7c1fd6;
+
+  --brand-green: #39ff88;
+  --brand-green-deep: #1fcf66;
+  --brand-green-soft: rgba(57, 255, 136, 0.16);
+  --brand-cyan: #00f0ff;
+  --brand-gold: #ffe600;
+  --brand-pink: #ff2fd0;
+  --brand-orange: #ff8a00;
+
+  /* Semantic */
+  --positive: #39ff88;
+  --positive-soft: rgba(57, 255, 136, 0.16);
+  --negative: #ff2f6c;
+  --negative-soft: rgba(255, 47, 108, 0.18);
+  --gold: #ffe600;
+  --gold-soft: rgba(255, 230, 0, 0.16);
+
+  /* Area colors — one distinct neon per practice area */
+  --area-listening: #00f0ff;
+  --area-grammar: #b026ff;
+  --area-reading: #39ff88;
+  --area-vocabulary: #ff2fd0;
+
+  /* Typography — pixel game font used everywhere, display and body alike */
+  --font-display: "Pixelify Sans", "Press Start 2P", monospace;
+  --font-body: "Pixelify Sans", "Press Start 2P", monospace;
+
+  /* Spacing scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* Radii */
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 22px;
+  --radius-xl: 28px;
+  --radius-pill: 999px;
+
+  /* Shadows — glowing neon light instead of a flat blurry drop shadow */
+  --shadow-card: 0 0 0 1.5px var(--border), 0 0 26px rgba(176, 38, 255, 0.1);
+  --shadow-elevated: 0 0 0 1.5px var(--accent-glow), 0 0 44px rgba(176, 38, 255, 0.28);
+  --glow-accent: 0 0 10px var(--accent-glow), 0 0 26px rgba(176, 38, 255, 0.4);
+  --glow-green: 0 0 10px rgba(57, 255, 136, 0.7), 0 0 26px rgba(57, 255, 136, 0.35);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-bounce: cubic-bezier(0.22, 1.8, 0.36, 1);
+  --dur-fast: 150ms;
+  --dur-med: 280ms;
+  --dur-slow: 480ms;
+
+  /* Layout */
+  --content-max: 920px;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color-scheme: dark;
+  }
+}

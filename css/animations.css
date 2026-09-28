@@ -1,0 +1,229 @@
+@keyframes view-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes check-pop {
+  0% {
+    transform: scale(0.4);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.15);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.check-pop {
+  animation: check-pop var(--dur-med) var(--ease-spring);
+}
+
+@keyframes card-complete-flash {
+  0% {
+    box-shadow: 0 0 0 0 var(--positive-soft);
+  }
+  40% {
+    box-shadow: 0 0 0 8px var(--positive-soft);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(52, 211, 153, 0);
+  }
+}
+
+.flash-complete {
+  animation: card-complete-flash 700ms var(--ease-out);
+}
+
+@keyframes shake {
+  10%,
+  90% {
+    transform: translateX(-1px);
+  }
+  20%,
+  80% {
+    transform: translateX(2px);
+  }
+  30%,
+  50%,
+  70% {
+    transform: translateX(-4px);
+  }
+  40%,
+  60% {
+    transform: translateX(4px);
+  }
+}
+
+.shake {
+  animation: shake 420ms ease-in-out;
+}
+
+@keyframes ring-fill-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.ring-pop {
+  animation: ring-fill-pop var(--dur-med) var(--ease-spring);
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-10vh) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0.9;
+  }
+}
+
+.confetti-piece {
+  position: fixed;
+  top: 0;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  z-index: 99;
+  pointer-events: none;
+  animation: confetti-fall linear forwards;
+}
+
+@keyframes pulse-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(139, 124, 246, 0);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse-glow-accent {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--accent-glow), 0 0 8px var(--accent-glow);
+  }
+  50% {
+    box-shadow: 0 0 0 5px transparent, 0 0 16px var(--accent-glow);
+  }
+}
+
+@keyframes fade-slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-slide-up {
+  animation: fade-slide-up var(--dur-med) var(--ease-out);
+}
+
+/* Typewriter heading reveal — a glowing blinking cursor while text is being typed */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.typewriter-active::after {
+  content: "";
+  display: inline-block;
+  width: 0.5em;
+  height: 0.85em;
+  margin-left: 4px;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent-glow);
+  vertical-align: -0.1em;
+  animation: cursor-blink 700ms steps(1) infinite;
+}
+
+/* Background glow drift */
+@keyframes bg-glow-drift-1 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(7vw, 5vh) scale(1.12); }
+}
+
+@keyframes bg-glow-drift-2 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-6vw, -7vh) scale(1.08); }
+}
+
+@keyframes bg-glow-drift-3 {
+  from { transform: translate(0, 0) scale(1); }
+  to { transform: translate(-5vw, 6vh) scale(0.95); }
+}
+
+/* Dashboard activity cards rising in with a stagger (delay set inline per card) */
+@keyframes card-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes flame-flicker {
+  0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 0 0 transparent); }
+  25% { transform: scale(1.08) rotate(-3deg); }
+  50% { transform: scale(0.96) rotate(2deg); filter: drop-shadow(0 0 6px rgba(255, 199, 0, 0.6)); }
+  75% { transform: scale(1.05) rotate(-1deg); }
+}
+
+@keyframes emoji-bounce {
+  0% { transform: scale(0.3) translateY(20px); opacity: 0; }
+  60% { transform: scale(1.2) translateY(-6px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); }
+}
+
+@keyframes splash-fade-out {
+  0% { opacity: 1; transform: scale(1); filter: blur(0); }
+  100% { opacity: 0; transform: scale(1.08); filter: blur(6px); }
+}
+
+@keyframes splash-mark-in {
+  0% { opacity: 0; transform: scale(0.4) rotate(-20deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+@keyframes splash-text-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 0.55; }
+  50% { opacity: 1; }
+}
+
+@keyframes nav-swap-in {
+  from { opacity: 0; transform: translateX(-6px); }
+  to { opacity: 1; transform: translateX(0); }
+}

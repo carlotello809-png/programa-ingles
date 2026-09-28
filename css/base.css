@@ -1,0 +1,400 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* Background field — a calm night-sky backdrop: a few soft drifting color
+   blobs for ambient depth, with a twinkling pixel starfield painted on top
+   (see core/starfield.js). Fixed behind everything. */
+.bg-field {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+  background: var(--bg);
+}
+
+.bg-glow {
+  position: absolute;
+  width: 55vmax;
+  height: 55vmax;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.28;
+  will-change: transform;
+}
+
+.bg-glow.g1 {
+  top: -18%;
+  left: -10%;
+  background: radial-gradient(circle at 40% 40%, var(--accent), transparent 70%);
+  animation: bg-glow-drift-1 36s var(--ease-out) infinite alternate;
+}
+
+.bg-glow.g2 {
+  bottom: -22%;
+  right: -12%;
+  background: radial-gradient(circle at 60% 60%, var(--brand-pink), transparent 70%);
+  animation: bg-glow-drift-2 42s var(--ease-out) infinite alternate;
+}
+
+.bg-glow.g3 {
+  top: 32%;
+  right: 8%;
+  width: 40vmax;
+  height: 40vmax;
+  background: radial-gradient(circle at 50% 50%, var(--brand-cyan), transparent 70%);
+  opacity: 0.2;
+  animation: bg-glow-drift-3 48s var(--ease-out) infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bg-glow {
+    animation: none !important;
+  }
+}
+
+/* App footer — pinned at the very bottom of the page: sits flush under short
+   content (settings, an empty quiz) and scrolls with the page once content
+   grows past the viewport, via margin-top:auto in the .main-content flex column. */
+.app-footer {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: auto auto 0;
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  color: var(--text-muted);
+  font-size: 12px;
+}
+
+.app-footer .app-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.app-footer .app-footer-heart {
+  color: var(--negative);
+  display: inline-flex;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text-primary);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: var(--radius-pill);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--surface-2);
+}
+
+/* App shell */
+.app-shell {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ------------------------------------------------------------------ */
+/* Top bar — a single, minimal horizontal header + tab row used at    */
+/* every viewport width (replaces the old left sidebar entirely).     */
+/* ------------------------------------------------------------------ */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  flex-shrink: 0;
+  background: rgba(8, 8, 16, 0.78);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1.5px solid var(--accent);
+  box-shadow: 0 1px 20px var(--accent-glow);
+}
+
+.topbar-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-6) 0;
+}
+
+.topbar-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.brand-mark {
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-md);
+  object-fit: cover;
+  display: block;
+  border: 2px solid var(--accent);
+  box-shadow: var(--glow-accent);
+  transition: transform var(--dur-med) var(--ease-bounce), box-shadow var(--dur-med) var(--ease-out);
+}
+
+.brand:hover .brand-mark {
+  transform: scale(1.1);
+  box-shadow: 0 0 16px var(--accent-glow), 0 0 36px rgba(176, 38, 255, 0.5);
+}
+
+.brand-name {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text-primary);
+  letter-spacing: 0.02em;
+}
+
+.nav-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-6);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+@media (min-width: 901px) {
+  .nav-tabs {
+    justify-content: center;
+  }
+}
+
+.nav-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 8px 14px;
+  border-radius: var(--radius-pill);
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-family: var(--font-display);
+  font-weight: 400;
+  background: transparent;
+  border: 2px solid transparent;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  transition: background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-bounce),
+    box-shadow var(--dur-fast) var(--ease-out), text-shadow var(--dur-fast) var(--ease-out);
+}
+
+.nav-item svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  opacity: 0.85;
+  transition: transform var(--dur-med) var(--ease-bounce), filter var(--dur-fast) var(--ease-out);
+}
+
+.nav-item:hover {
+  background: var(--surface);
+  border-color: var(--accent);
+  color: var(--text-primary);
+  text-shadow: 0 0 10px var(--accent-glow);
+  transform: scale(1.14);
+  box-shadow: 0 0 16px var(--accent-glow);
+  z-index: 1;
+}
+
+.nav-item:hover svg {
+  transform: scale(1.12);
+  filter: drop-shadow(0 0 6px var(--accent-glow));
+}
+
+.nav-item:active {
+  transform: scale(1.02);
+}
+
+.nav-item.active {
+  background: var(--accent);
+  border-color: var(--accent-strong);
+  color: #100521;
+  box-shadow: var(--glow-accent);
+  text-shadow: none;
+}
+
+.nav-item.active:hover {
+  transform: scale(1.14);
+}
+
+.nav-item.active svg {
+  opacity: 1;
+  color: #100521;
+}
+
+.streak-pill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--surface-solid);
+  border: 2px solid var(--border);
+  font-size: 12.5px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: background var(--dur-med) var(--ease-out), border-color var(--dur-med) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out);
+}
+
+.streak-pill.is-lit {
+  background: var(--surface-solid);
+  border-color: var(--brand-gold);
+  color: var(--brand-gold);
+  box-shadow: 0 0 14px rgba(255, 230, 0, 0.4);
+}
+
+.streak-pill svg {
+  width: 16px;
+  height: 16px;
+  color: var(--brand-gold);
+  flex-shrink: 0;
+}
+
+.streak-pill.is-lit svg {
+  color: var(--brand-gold);
+  filter: drop-shadow(0 0 5px rgba(255, 230, 0, 0.7));
+  animation: flame-flicker 1.6s ease-in-out infinite;
+}
+
+.streak-pill strong {
+  color: inherit;
+  font-family: var(--font-display);
+}
+
+/* Main content */
+.main-content {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-6) var(--space-6) var(--space-8);
+}
+
+.view {
+  display: none;
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  animation: view-in var(--dur-med) var(--ease-out);
+}
+
+.view.active {
+  display: block;
+}
+
+@media (max-width: 900px) {
+  .topbar-row {
+    padding: var(--space-3) var(--space-4) 0;
+  }
+
+  .nav-tabs {
+    padding: var(--space-2) var(--space-4) var(--space-3);
+  }
+
+  .streak-pill span {
+    display: none;
+  }
+
+  .main-content {
+    padding: var(--space-5);
+  }
+}
+
+@media (max-width: 460px) {
+  .brand-name {
+    display: none;
+  }
+}

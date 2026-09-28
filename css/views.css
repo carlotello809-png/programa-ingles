@@ -1,0 +1,226 @@
+/* Dashboard */
+.dash-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-5);
+  margin-bottom: var(--space-6);
+  flex-wrap: wrap;
+}
+
+.dash-date {
+  color: var(--text-muted);
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.dash-title {
+  font-size: 26px;
+}
+
+.dash-progress-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.dash-progress-text strong {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 15px;
+  margin-bottom: 2px;
+}
+
+.dash-progress-text span {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.dash-gallery {
+  margin-bottom: var(--space-6);
+  animation: fade-slide-up var(--dur-slow) var(--ease-out) both;
+}
+
+.dash-gallery.accordion-gallery {
+  height: 190px;
+}
+
+@media (max-width: 640px) {
+  .dash-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 460px) {
+  .dash-gallery.accordion-gallery {
+    height: auto;
+  }
+}
+
+/* Grammar exercise blocks */
+.exercise-block {
+  margin-bottom: var(--space-5);
+  padding-bottom: var(--space-5);
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.exercise-block:last-child {
+  border-bottom: none;
+}
+
+.exercise-number {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+
+.exercise-prompt {
+  font-size: 15px;
+  margin-bottom: var(--space-3);
+  line-height: 1.55;
+}
+
+.exercise-prompt .blank-input {
+  margin: 0 4px;
+}
+
+/* Reading passage */
+.passage-box {
+  font-size: 15.5px;
+  line-height: 1.85;
+  color: var(--text-primary);
+}
+
+.passage-box p {
+  margin-bottom: var(--space-4);
+}
+
+.reading-hint {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: var(--space-4);
+}
+
+/* Vocabulary grid */
+.word-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-4);
+}
+
+@media (max-width: 700px) {
+  .word-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.word-index {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 700;
+}
+
+/* Progress view */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-4);
+  margin-bottom: var(--space-6);
+}
+
+@media (max-width: 800px) {
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.area-progress-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) 0;
+}
+
+.area-progress-label {
+  width: 110px;
+  font-size: 13.5px;
+  font-weight: 500;
+  flex-shrink: 0;
+}
+
+.area-progress-pct {
+  width: 42px;
+  text-align: right;
+  font-size: 13px;
+  color: var(--text-muted);
+  flex-shrink: 0;
+}
+
+.calendar-wrap {
+  margin-top: var(--space-3);
+}
+
+.calendar-legend {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  font-size: 11.5px;
+  color: var(--text-muted);
+  margin-top: var(--space-3);
+}
+
+.legend-swatch {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Settings */
+.settings-section {
+  margin-bottom: var(--space-6);
+}
+
+.settings-section h3 {
+  font-size: 14px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: var(--space-3);
+}
+
+.word-card {
+  transition: transform var(--dur-med) var(--ease-bounce), border-color var(--dur-med) var(--ease-out),
+    box-shadow var(--dur-med) var(--ease-out);
+  animation: card-rise var(--dur-slow) var(--ease-out) both;
+}
+
+.word-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border);
+  box-shadow: var(--shadow-elevated);
+}
+
+.exercise-block {
+  animation: fade-slide-up var(--dur-med) var(--ease-out) both;
+}
+
+/* View intro text */
+.view-intro {
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  margin-top: 4px;
+}
+
+/* Complete CTA row */
+.complete-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-5);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--border-soft);
+}

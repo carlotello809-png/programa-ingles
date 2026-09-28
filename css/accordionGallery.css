@@ -1,0 +1,188 @@
+/* Vanilla port of a React/GSAP accordion-gallery component (no build step, no
+   GSAP — flex-grow + opacity are plain CSS transitions). Used on the dashboard
+   to present the 4 practice areas as expanding panels instead of a static grid. */
+.accordion-gallery {
+  --ag-accent: var(--accent-strong);
+  --ag-overlay: #020208;
+  --ag-text: var(--text-primary);
+  --ag-gap: 10px;
+  --ag-radius: var(--radius-lg);
+
+  display: flex;
+  gap: var(--ag-gap);
+  width: 100%;
+}
+
+.ag-panel {
+  position: relative;
+  flex: 1 1 0%;
+  min-width: 0;
+  overflow: hidden;
+  border-radius: var(--ag-radius);
+  border: 2px solid var(--border);
+  background: var(--surface-solid);
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+  outline: none;
+  transition: flex-grow 560ms var(--ease-out), box-shadow var(--dur-med) var(--ease-out),
+    border-color var(--dur-med) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+
+.ag-panel:hover,
+.ag-panel:focus-visible {
+  border-color: var(--accent);
+  box-shadow: 0 0 18px var(--accent-glow);
+  transform: translateY(-2px);
+}
+
+.ag-panel--active {
+  flex-grow: 2.6;
+  border-color: var(--accent);
+  box-shadow: 0 0 22px var(--accent-glow);
+}
+
+.ag-panel__frame {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: inherit;
+}
+
+.ag-panel__media {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ag-panel__media svg {
+  width: 34px;
+  height: 34px;
+  color: var(--text-primary);
+  opacity: 0.85;
+  filter: drop-shadow(0 0 6px rgba(241, 241, 255, 0.25));
+  transition: transform 420ms var(--ease-bounce), opacity 300ms ease, filter 300ms ease;
+}
+
+.ag-panel--active .ag-panel__media svg {
+  opacity: 0;
+  filter: drop-shadow(0 0 10px var(--accent-glow));
+  transform: scale(1.18) translateY(-6px);
+}
+
+/* The full illustration — hidden until the panel is hovered/active, then
+   crossfades in over the icon and zooms in slightly for a "reveal" feel. */
+.ag-panel__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0;
+  transform: scale(1.06);
+  transition: opacity 450ms ease, transform 600ms var(--ease-out);
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.ag-panel--active .ag-panel__image {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.ag-panel__overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--ag-overlay) 88%, transparent) 100%);
+  opacity: 0;
+  transition: opacity 400ms ease;
+}
+
+.ag-panel--active .ag-panel__overlay {
+  opacity: 1;
+}
+
+.ag-panel__label {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.ag-panel__bar {
+  flex: 0 0 auto;
+  width: 3px;
+  height: 20px;
+  border-radius: 3px;
+  background: var(--ag-accent);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+
+.ag-panel__text {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 280ms ease 40ms, transform 280ms ease 40ms;
+  min-width: 0;
+}
+
+.ag-panel__text strong {
+  color: var(--ag-text);
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: 12.5px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-shadow: 0 0 10px var(--accent-glow);
+}
+
+.ag-panel__text span {
+  font-size: 11px;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.ag-panel--active .ag-panel__bar,
+.ag-panel--active .ag-panel__text {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 640px) {
+  .accordion-gallery {
+    flex-wrap: wrap;
+  }
+
+  .ag-panel {
+    flex-basis: calc(50% - var(--ag-gap) / 2);
+    height: 96px;
+  }
+
+  .ag-panel--active {
+    flex-grow: 0;
+    flex-basis: 100%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ag-panel,
+  .ag-panel__media svg,
+  .ag-panel__overlay,
+  .ag-panel__bar,
+  .ag-panel__text {
+    transition: none;
+  }
+}
